@@ -1,0 +1,29 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "gdb",
+			"request": "attach",
+			"name": "Attach to PID",
+			"cwd": "${workspaceRoot}",
+			"executable": "/home/hamad12a_pop/csgo_linux64", 
+			// pick process to attach to
+			// store shell command: $(pidof csgo_linux64)
+			// "autorun": [
+			//     "set sysroot /home/hamad12a_pop/Downloads/Visual Studio/Osiris/Source/",
+			//     // "attach $(pidof csgo_linux64)"
+			// ],
+			
+			"target": "85418",
+			// "stopAtEntry": true,
+			"valuesFormatting": "parseText",
+			// set sysroot
+			"debugger_args": ["set sysroot /home/hamad12a_pop/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/","attach $(pidof csgo_linux64)"],
+			"stopAtConnect": true,
+		// },
+	}		
+	]
+}
