@@ -5,25 +5,34 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "gdb",
+			"type": "lldb",
 			"request": "attach",
-			"name": "Attach to PID",
-			"cwd": "${workspaceRoot}",
-			"executable": "/home/hamad12a_pop/csgo_linux64", 
-			// pick process to attach to
-			// store shell command: $(pidof csgo_linux64)
-			// "autorun": [
-			//     "set sysroot /home/hamad12a_pop/Downloads/Visual Studio/Osiris/Source/",
-			//     // "attach $(pidof csgo_linux64)"
-			// ],
-			
-			"target": "85418",
-			// "stopAtEntry": true,
-			"valuesFormatting": "parseText",
-			// set sysroot
-			"debugger_args": ["set sysroot /home/hamad12a_pop/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/","attach $(pidof csgo_linux64)"],
-			"stopAtConnect": true,
-		// },
-	}		
+			"name": "CSGO",
+			"program": "/home/hamad12a_pop/csgo_linux64",
+			"stopOnEntry": true,
+			"postRunCommands": [
+				"call (void*)dlopen(\"/home/hamad12a_pop/vscode/Osiris/build/Source/libOsiris.so\", 2)",
+			]
+		},
+		{
+			"name": "(gdb) Attach",
+			"type": "cppdbg",
+			"request": "attach",
+			"program": "/home/hamad12a_pop/csgo_linux64",
+			"MIMode": "gdb",
+			"additionalSOLibSearchPath": "/home/hamad12a_pop/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/bin/linux64/",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Set Disassembly Flavor to Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			]
+		},
 	]
 }
